@@ -1,0 +1,160 @@
+
+---------------------------------------------------------------------
+
+Notas iniciais:
+
+- O documento tem uma série de notas representadas por números com informação extra (explicação) de uma série de conceitos descritos ao longo do texto;
+
+---------------------------------------------------------------------
+
+BLOCKCHAIN:
+
+a) Descrição da tecnologia e explicação do seu funcionamento:
+
+	------------------------------------------------------------------
+
+	a.1) INTRODUÇÃO:
+
+	Blockchain é uma tecnologia que se baseia numa lista crescente de registos (também chamados de blocos), ligados e mantidos usando criptografia.    
+
+	Trata-se de um sistema distribuído e aberto a todos os users que regista transações de dados entre duas partes com eficiência, sujeito a verificações/validações de forma permanente. 
+
+	Tipicamente este sistema é gerenciado por uma topologia de rede P2P (4) para estabelecer a conecção entre elementos da rede e respetiva validação de novos blocos que possam surgir.
+
+	Uma vez registado um novo bloco, os dados de quaisquer blocos já conectados não podem ser alterados sem que se altere os dados do bloco anterior o que requere que toda a rede valide quaisquer alterações nesse bloco, ou seja, tome-se por exemplo, uma rede com milhões de peers, uma alteração num bloco da blockchain implica que se altere todos os blocos para trás dessa blockchain e por consequente que cada um dos peers valide cada uma dessas alterações, o que, para uma rede enorme com milhões de peers e milhões de blocos na blockchain, seja um processo computacionalmente muito complicado (também denominado de impossível :D). Este sistema torna assim a blockchain segura por design.
+
+	__________________________________________________________________
+
+	PORMENORES BLOCKCHAIN NA PRÁTICA:
+
+	-> Criação/geração da hash por um minerador:
+
+	Na verdade ao introduzir dados de uma transação para um bloco, a hash é influenciada pelo caracteres introduzidos o que varia sempre.
+
+	No site (7) podemos verificar isso mesmo através de um demo de uma blockchain na vertente de geração de "hash" - usando SHA256 (8). É possivel a partir da "DATA" introduzida chegar a um hash, MAS é IMPOSSIVEL chegar da hash para a "DATA".
+
+	-> Criação de um bloco:
+
+	Cada bloco contém:
+
+	 - uma hash do bloco anterior;
+	 - uma timestamp (1), identidade ou impressão digital do bloco;
+	 - Transition data (dados para transição em cada bloco);
+
+	 Um bloco é considerado minerado sempre que o minerador encontrar um número que produza uma hash que represente um número abaixo de um número previamente estabelecido, o que representa na prática encontrar um hash com X zeros no inicio, número que vai aumentando a dificuldade de "mining".
+ 
+	 Assim que um bloco esteja pronto para ser minerado, os miners tentam procurar um "Nounce" que produza uma hash com X zeros no início, número estabelecido pela dificuldade proposta de hash no momento. 
+
+	 Assim que temos vários blocos conectados seguidos, cada um terá o seu próprio hash e o hash do anterior.
+
+	 Exemplo: 3 blocos em blockchain:
+
+	 - Se alterarmos os dados do 1º bloco da blockchain então teriamos de o minerar outra vez para que seja calculada uma hash nova com os pre-requisitos de X zeros no inicio e, assim que minerada, o bloco 2 tambem estaria sem fazer sentido pois a hash dele é calculada a partir dos seus dados e da hash anterior, teremos de minerar o bloco 2 tmb, e assim por diante...
+
+	 - Num sistema de milhoes de blocos, visto que o blockchain guarda registos desde o inicio da primeira transação, seja do que for, criptomoedas ou outra coisa, teriamos de minerar todos os blocos desde o inicio.
+
+	Sistema distribuido da BlockChain:
+
+	- Cada node da blockchain tem uma cópia da blockchain. Se uma pessoa A mudasse um dado da sua blockchain, os blocos da sua cópia ficariam inválidos. Para além disso teria de haver uma fase de sincronização da sua cópia com a cópia da pessoa B, C, D,... em que a pessoa A teria de convencer as outras pessoas que a sua versão é a correta, ou seja, as suas novas hash mineradas eram a versão correta. Então como isto funciona? Como o sistema sabe quem está correto, a pessoa A? ou as outras?
+
+	- Na verdade está correta a versão da blockchain que cresce mais rápido, ou seja, enquanto a pessoa A está a corrigir a sua blockchain pois quis alterar um dado num dado bloco, ou seja, enquanto ela faz o processo computacional pesado e demorado de "mining", os outros blocos das pessoas restantes (B, C, D, ...) vão crescendo mais rápido. Sendo assim, é EXTREMAMENTE COMPLICADO, alterar um dado do passado na blockchain.
+
+	------------------------------------------------------------------
+
+	a.2) História, Origens e Fundador(es):
+
+	- O sistema Blockchain foi inventado por uma pessoa (ou um grupo de pessoas) que se deu pelo nome de Satoshi Nakamoto em 2008 para servir como registo de transações da criptomoeda bitcoin (6). Na verdade, a identidade de este "senhor" é desconhecida.
+	- A criação da blockchain para a bitcoin fez com que esta criptomoeda fosse a primeira que resolveu o problema "double-spending problem" (9).
+
+	__________________________________________________________________
+
+b) Aplicações da BLOCKCHAIN:
+
+	- Hoje em dia a blockchain é uma tecnologia que pode ser integrada em muitas áreas. O uso primário da blockchain é na área das criptomoedas, ou seja, na manutenção de transações económicas.
+
+	- Bitcoin e Ethereum são exemplos disso como também um novo grupo, anunciado em Maio de 2018 pelo Facebook baseado em BlockChain.
+
+	- Podem ser incluidos em sistemas de redes de computadores pelas vantagens já mencionadas, para controlar utilizadores, ações,...
+
+c) Tipos de Blockchain
+
+	-> Public blockchain:
+
+		- Sem restrições de acesso;
+		- Qualquer um com Internet pode aceder, enviar transações, e ser um minerador sendo, geralmente, recompensados por manter a segurança na rede.
+
+	-> Private blockchain:
+
+		- Acesso restrito por convite para a rede.
+
+--------------------------------NOTES:--------------------------------
+
+(1) TIMESTAMP: 
+
+	- Marca temporal - regista a data/hora em que certo evento ocorreu.
+	- Temos como exemplo de uma timestamp a marca temporal que define o início da era UNIX "1970-01-01 00:00:00 UTC" (Também chamada de POSIX (2) Time ou Unix Epoch ou Unix Timestamp) no dia 1 de janeiro de 1970.
+
+(2) POSIX: "Portable Operating System Interface":
+
+	- Família de normas IEEE 
+
+(3) IEEE: Instituto de Engenheiros Eletricistas e Eletrónicos:
+	
+	- Origem: Estados Unidos, em 1963;
+	- Estabelece padrões para dispositivos e computadores a nível mundial;
+
+(4) P2P: "Peer-to-Peer":
+
+	- Topologia de rede, ou melhor, uma arquitetura que particiona tarefas (tasks) entre peers (pares) sem que haja uma coordenação central de servers/hosts;
+	- Peers são ambos consumidores e Servidores de recursos em contraste com o que existe num modelo tipico "client-server";
+	- Este sistema diferencia de um tipico Cliente-Servidor também na capacidade de servir mais conteúdo entre peers pois à medida que o número de peers aumenta mais conteúdo pode ser partilhado (Tome-se por exemplo protocolos como o Bittorrent que requere muitos utilizadores que partilhem dados, ou até streaming de vídeos online).
+	- Os custos em geral são mais baixos para o distribuidor de conteúdo visto que não necessita de manter um servidor capaz de servir um número elevado de users;
+
+	-> Copyright & Security:
+
+	- Utilizar este protocolo implica que não haja um servidor central que verifique os conteúdos partilhados entre peers mas sim programas seguros, confiáveis, capazes de fazer esse tipo de verificações. São muitos os casos de problemas de legalidade passados por várias empresas, por exemplo MGM Studios, Grokster e outras.
+
+	- Para haver comunicação entre o software P2P implica que um port TCP/IP (5) específico se abra no firewall e, uma vez aberta essa porta de entrada, não estaremos mais protegidos de tráfico maligno que possa vir.
+
+(5) TCP/IP: "Transmission control protocol/Internet Protocol"
+
+	- É um conjunto de protocolos de comunicação entre computadores numa rede estabelecendo regras, padrões camadas de verificação no acesso à rede Internet;
+
+(6) BITCOIN:
+
+	- Criptomoeda descentralizada, também chamada de dinheiro eletrónico para transações P2P apresentada em 2008 por (deduz-se que seja) Satoshi Nakamoto.
+	- Primeira moeda descentralizada que utiliza a tecnologia blockchain permitindo assim que nenhum entidade governamental intermediária tenha influência ou consiga manipular a emissão e o valor da criptomoeda ou reduzir a inflação com a produção de mais dinheiro.
+	- O software que está por detrás da criação de bitcoin é open-source e foi lançado em 2009 sendo este código muito pesquisado e analisado sem que, atualmente, sejam conhecidas anomalias/fraudes no mesmo.
+
+
+	-> Blockchain & Bitcoin:
+
+	- Dados de "contabilidade" relativas a saldos e transações de bitcoin são transmitidos entre todos os peers da rede de maneira descentralizada e permanente.
+	- Cada transação (exemplo X enviou Y bitcoins para Z) é enviada para a rede atravéns de um software e validada por mineradores de bitcoin. Caso seja válida, adicionam a transação bitcoin no próximo bloco da cadeia de blocos a cada 10 minutos. Junto irá também a informação que o recebedor Z tem +Y (mais Y) bitcoins e o X tem -Y (menos Y) bitcoins.
+	- O que acontece na realidade com os "miners", ou seja, os "nodes" da rede, é uma espera por um bloco candidato a entrar para a "chain" que possua um "hash" de um bloco anterior VÁLIDO conhecido por este nó. Uma vez encontrado o bloco, este tenta produzir um hash criptográfico válido para o novo bloco sendo este um serviço que requer um poder de processamento muito elevado e quantide enorme de tentativa-erro. Assim que essa solução é encontrada informará o resultado para outros nós da rede e recebe uma recompensa em bitcoins (recompensa essa que tem diminuido ao longo dos anos).
+	- Eventualmente a blockchain irá conter toda a história desde o endereço da primeira transação até ao endereço mais recente. Sendo assim, e como dito anteriormente, as informações da blockchain são imutaveis e e seguras.
+
+	-> Informação adicional:
+
+	- Para reduzir o espaço de armazenamento de tal histórico dessas transações na blockchain são usadas árvores de merkle (7) que, no caso de um user tentar usar moedas já "gastas" este sistema irá rejeitar a transação.
+
+	-> De onde advém o valor da bitcoin?
+
+	- O valor real/convertivel da bitcoin, e de outras criptomoedas advem da competitividade do mercado, ou seja, enquanto houver bancos ou estruturas governamentais que introduzam delay na transferência de dinheiro de um país para o outro, o valor da bitcoin irá crescer, pois representa um método não manipulado, não inflacionado, seguro, de transferência de dinheiro virtual. Tome-se por exemplo a transferencia de correio de um lado para o outro: paga-se mais se for pelo ar que pela terra pois é mais rápido pelo ar. Outro exemplo: Correm noticias de que o Facebook já tem pensado, com o apoio de dezenas de empresas como a Uber, eBay, etc... na implementação de uma nova criptomoeda, de seu nome Libra, para facilitar a transação, ou seja, a rapidez, na transferencia de dinheiro nas plataformas, o que está a mexer com o valor da Bitcoin mesmo não tendo sido lançada.
+	- Outra comparação possivel é da bitcoin com barras de ouro, porque valem tanto? Quem estabelece o seu valor? - o valor da bitcoin é estabelecido pelo MERCADO. 
+	- Regra geral: tudo varia em função da lei da oferta e da procura; da segurança, rapidez e velocidade.
+
+	- O que realmente importa não é o preço dela (p.exe. em euros) mas sim o facto de ela existir, mesmo que o preço de 1 bitcoin valha 0,50 centimos.
+
+	-> Limites da bitcoin:
+
+	- A bitcoin tem um limite de 21M de BTC. Este número foi estabelecido pelo próprio algoritmo da bitcoin.
+	- Inicialmente cada bloco seguia com 50 BTC e, desde 2012, o numero de BTC/bloco é reduzido pela metada de 4 em 4 anos. Hoje cada bloco tem 12,5 BTC. Estima-se assim que o último BTC será minerizado apenas em 2140.
+
+	(7) (https://anders.com/blockchain/hash)
+
+	(8) SHA-256 - Secure Hash Algorithm (256 bits)
+
+	- É uma função de hash usada muitas vezes em blockchain que transforma, assim, os dados numa impressão digital online com um tamanho fixo. O input pode ser literalmente quaisquer dados e para esses mesmos dados a função retornará sempre os mesmo resultados.  
+
+	(9)
