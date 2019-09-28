@@ -1,0 +1,95 @@
+
+
+
+Introdução ao tema...
+
+	Nos dias de hoje temos total confiança em entidades governamentais (...e não só), públicas ou privadas, que decidem como os nossos dados são partilhados, guardados e mantidos. 
+
+	Estas asseguram a privacidade dos dados e estabelecem a nossa identidade de tal modo que, colocámos nas mesmas a responsabilidade de gerir o nosso dinheiro e as transações que fazemos. 
+
+	Será que podemos confiar nestas instituições para decidir como transacionamos dados ou até mesmo dinheiro?
+	A resposta é: não sabemos! 
+
+	A verdade é que, como seres humanos, temos a necessidade de ter algo que nos traga conforto em decisões importantes como é o caso da movimentação de bens monetários.
+
+	A tecnologia Blockchain surge no sentido de ajudar a introduzir essa confiança, nomeadamente na área relacionada com as transações económicas. Como? Através de tecnologia apenas.
+
+Então...afinal o que é a Blockchain?
+
+	A Blockchain é na sua raiz uma Base de Dados que guarda registos também chamados de blocos. Estes encontram-se ligados e são permanentemente mantidos e verificados usando criptografia, estabelecendo um histórico permanente de transações desses mesmos dados.
+
+	Em termos de topologia de rede, a Blockchain é utilizada numa arquitetura P2P (peer-to-peer) que se baseia num sistema descentralizado de partilha de informação, ou seja, não necessita de um servidor central para controlo de dados pois cada nó serve como host/servidor e como autenticador dos dados que circulam na rede.
+
+	Trata-se de um sistema distribuído que pode ser público (acessível a partir de qualquer utilizador que deseja participar na rede) ou privado (só para utilizadores com elevadas permissões de autenticação). 
+
+	Essencialmente, numa Blockchain pública, ou seja, num registo em cadeia de transações de dados interligados, cada elemento da rede tem uma cópia completa da Blockchain e está responsável por verificar novas transações e, em conjunto com os outros participantes, chegar a um consenso final sobre a verdade dos dados transacionados, isto é, validar as chaves criptográficas que unem os blocos da cadeia.
+
+	Partimos do princípio que, utilizando um sistema como este, os dados já registados nunca mais poderão ser apagados ou até alterados. Sendo assim, podemos pensar nisto como tentar roubar algo de um supermercado e estar constantemente a ser observado por pessoas, camâras de vigilância e até mesmo sensores à saída. Isto torna, deste modo, a Blockchain segura por design.
+
+Parece interessante, mas como funciona?
+
+	A Blockchain forma-se a partir da criação e linkagem de blocos de transações partilhados por participantes da rede descentralizada. 
+
+	Os nós da rede que apenas querem registar transações de dados enviam essas transações para que estas sejam visíveis a partir de todos aqueles que as pretentem validar. 
+
+	Segue-se o primeiro processo de validação de uma transação:
+
+	-> Processo 1: Assinatura e validação da transação.
+
+	Aliado a cada participante temos uma private-key e uma public-key que servem para autenticar o utilizador no sistema que usa a Blockchain para que os seus dados sejam confirmados e a transação seja devidamente assinada.
+
+	A private key (privada ao user) é gerada para cada utilizador aleatoriamente e a public key é gerada a partir da Private key, o que a torna dificil de decifrar.
+
+	Quando queremos adicionar uma nova transação, por exemplo de Bitcoin neste sistema, utilizando a private key e os dados da transação é gerada uma Assinatura que, no fundo, é como se fosse uma key associada a essa transação.
+
+	Uma transação encontra-se processada quando uma assinatura é gerada para a mesma, por um utilizador válido.
+
+	-> Processo 2: Agrupação num Bloco.
+
+	Neste momento, tendo validado transações, estas são agrupadas num Bloco, assinado com "timestamps" ou outras assinaturas digitais, e adicionadas à Blockchain. Este processo descreve a forma mais simples de validar blocos, o que não acontece no caso da Bitcoin.
+
+	O processo da Bitcoin e outras criptomoedas passa por ter outros utilizadores da rede que têm a função de validar blocos criando aquilo que se chama de "Proof-of-Work".
+
+	** Proof-of-Work:
+
+	O objetivo de sistemas como a Bitcoin, baseados em tecnologias como a Blockchain, é ter um sistema seguro e imutável, ou seja, que não permita alterações de transações já registadas. Para isso são utilizadas tecnologias de segurança criptográficas para gerar assinaturas digitais dos blocos adicionados à Blockchain.
+
+	Mediante diferentes dados, os "miners" utilizam funções criptográficas para gerar uma impressão digital desse bloco que identifica unicamente o mesmo.
+
+	O trabalho dos participantes da rede é, em geral, encontrar um número (chamado de "Nounce") que juntamente com os dados da transação produza uma chave criptográfica com umas dadas restrições.
+
+	No caso da Bitcoin, o trabalho dos "miners" é gerar uma hash que tenha um número definido de zeros no início, o que representa um trabalho computacionalmente complicado utilizando muito CPU e até mesmo energia elétrica.
+
+	Este conceito de gerar esta hash, ou seja, encontrar uma chave que valide o bloco é chamado de "Proof-of-Work".
+
+	Após minerarem um bloco, ou seja, encontrarem a hash-key correta para o mesmo, estes fazem "brodcast" da sua solução para toda a rede (utilizando um protocolo denominado de Gossip) e a partir deste momento, todos os outros utilizadores param o seu trabalho para receber o novo bloco e validá-lo.
+
+	Validar o bloco é, essencialmente, verificar esse "Proof-of-Work", e o encadeamento lógico das transações lá registadas e assinadas.
+
+	Uma vez validado o novo Bloco este é incluído na cadeia atual e ligado através de uma chave criptográfica do bloco anterior e é estabelecido que este bloco obteve uma confirmação. Estas confirmações são contadas mediante a quantidade de blocos que a partir deste foram adicionados sendo necessário 5 novos blocos a seguir a este para que recebe a confirmação final, no caso da Bitcoin.
+
+------------------------------------------------------------
+	
+Conclusão:
+
+	Incertezas...é aquilo que enfrentamos hoje em dia pois não sabemos com quem estamos a trocar bens e sem ter a garantia de que vamos ter um "Plano B" caso algo corra mal.
+
+	Supondo que quero comprar algo de um sistema como o eBay, o que fazer antes de comprar? Talvez ver quem é o vendedor, de onde é, a sua classificação, as "reviews", etc...Isto é o que fazemos hoje em dia para baixar as nossas incertezas sobre com quem estamos a lidar.
+
+	Mas mesmo assim, podemos pensar em quantos perfis podemos criar em diferentes "websites"...São perfis legítimos? Confiáveis? Somos a mesma pessoa? Estabelecemos a mesma identidade nos diferentes perfis?
+
+	A Blockchain não tem filtros, permite que qualquer indivíduo a utilize de onde quiser e como quiser com a garantia de que a identidade do utilizador da mesma é única e sem máscaras. Facilmente poderíamos ver a identidade de um vendedor, no caso do eBay, os seus atributos e registos todos, desde o primeiro. O que nos ajudava a decidir se valia ou não a pena comprar um dado produto do mesmo.
+
+	E se não receber o produto? Posso ter o meu dinheiro de volta? A Blockchain permite também a criação de contratos que são chamados caso necessário sem que uma entidade "third-party" os force a tal. Só quando forem verificadas todas a condições da transação, ou seja, a validação, o contrato, é que o dinheiro pode ser realmente transacionado.
+
+	A verdade é que esta tecnologia, apesar de ter surgido à uns bons anos, está na sua infância apenas. Felizmente, universidades, empresas, e outras corporações já estão a trabalhar na sua investigação.
+
+	Por fim, é de realçar que estamos a viver um mundo em que instituições autónomas e distribuídas estão empenhadas em utilizar tecnologias onde ninguém precisa de confiar em ninguém diretamente para crescer e saber a verdade dos seus dados, sendo que a incerteza (humana) nos trouxe muitas certezas (criptográficas) nesta área. 
+
+Other:
+
+	-> ver tema wikipedia TED 4m:35s
+
+	Hoje em dia são imensas as aplicações que a Blockchain apresenta em diversas indústrias com a vantagem de potenciar uma maior segurança em ambientes pouco confiáveis. 
+
+	Uma das grandes aplicações da Blockchain nos dias de hoje envolve o registo e validação de transações de criptomoedas, entre as quais Bitcoin, Ripple, Ethereum e Tether, as maiores redes de Blockchain.

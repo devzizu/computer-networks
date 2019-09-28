@@ -1,0 +1,57 @@
+
+Introdução:
+
+A criação da tecnologia Blockchain introduziu muitas aplicações em diversas indústrias com a principal vantagem de potenciar uma maior segurança em ambientes pouco confiáveis. 
+	
+Assim sendo, seguem-se as principais vantagens introduzidas pelo sistema Blockchain:
+
+	1) Um sistema distribuído
+
+	Visto que os dados armazenados relativos à Blockchain são guardados, como cópias, em milhares de dispositivos numa rede de nodos ("peers") distribuída e descentralizada, o risco de ataques e falhas técnicas num nodo não condiciona o sistema global nem os outros nodos porque, essencialmente, não existe um ponto central mas sim um sistema distribuído de pontos.
+
+	Em comparação, Bases de dados tradicionais contam com um conjunto reduzido de servidores que são mais vulneráveis a "technical failures" e "cyber attacks".
+
+	2) Estabilidade
+
+	Blocos validados e adicionados são raramente revistos/rejeitados pois, uma vez que os dados são registados na Blockchain é extremamente difícil remover/alterar os mesmos.
+
+	Isto torna a Blockchain uma tecnologia perfeita para guardar registos financeiros ou qualquer outros dados que requerem um histórico permanente dos mesmos porque todas as mudanças são registadas e permanetemente adicionadas numa base de dados pública e distribuída.
+
+	3) Sistema confiável (?)
+
+	Nos sistemas de pagamento tradicionais as transações, geralmente, não dependem apenas das duas partes envolvidas mas também num intermediário, por exemplo, um banco, companhia ou servidor de pagamentos. 
+
+	Por outras palavras, o que nós queremos é encontrar um servidor intermediário que nos forneça confiança suficiente para transacionar esses dados financeiros.
+
+	Quando efetuamos uma transação através de um sistema bancário, confiámos nesse mesmo sistema "third-party" para atuar como aquele que garante a autenticidade daquele que enviou a transação e também a validação do valor enviado.
+
+	A Blockchain é pouco diferente do sistema anterior. Na verdade, a nossa confiança, desta vez, será em chaves criptográficas públicas ("cryptography public-key") e num mecanismo de consenso ("consensus mechanism").
+
+	Descrição do Algoritmo/Mecanismo de Consenso ("consensus mechanism"):
+
+	Numa rede de nodos é necessário encontrar um consenso sobre qual é a verdade relativa ao sistema implementado. Por exemplo, em Bitcoin é necessário que todos os nodos concordem com o histórico de transações.
+
+	Como é isso possivel num sistema onde ninguém conhece ninguém e onde se tem de chegar a um consenso?
+
+	Vamos supor que estamos a falar de Bitcoin e que existem dois "peers" honestos e um malicioso, como pode o sistema chegar a um consenso sobre a verdade? A bitcoin usa um algoritmo descrito de seguida:
+
+	PoW – Proof-of-Work (prova de trabalho): este algoritmo provoca uma competição entre os computadores ligados a Blockchain para ver quem será o primeiro a encontrar um hash respectivo ao novo bloco considerando a dificuldade imposta, fazendo com que os computadores com mais poder computacional tenham maiores probabilidades de “minerar” um novo bloco;
+
+	O que acontece em geral é o seguinte: Os "miners" recebem um conjunto de transações, não confirmadas até ao momento, sendo o seu objetivo encontrar um "input number" que gere uma "hash" como output com uma certa dificuldade ajustada pelo tempo médio até ao momento. Atualmente, são minerados novos blocos a cada 10 minutos. Uma vez minerado um bloco por um "miner" vencedor, este poderá então enviar o bloco para a rede e o bloco será validado pelos outros nodos.
+
+
+	Processo resumido:
+
+	Encontrar o Nounce; Corresponder esse nouce e, juntamente com a "data", corresponder a um "BlockHash"; Temos assim a "PoW"; Validadção do bloco por outros "miners"; "Miner" vencedor recebe recompensa (no caso da Bitcoin); 
+
+	Por estas razões, a Blockchain é muitas vezes referida como um "trustless system".
+
+
+
+
+
+
+
+
+
+No entanto, a sua natureza descentralizada trouxe algumas desvantages. Por exemplo, quando comparada com bases de dados tradicionais centralizadas, a tecnologia Blockchain apresenta limitações de eficiência e requerem capacidade de armazenamento sucessivamente maior.
