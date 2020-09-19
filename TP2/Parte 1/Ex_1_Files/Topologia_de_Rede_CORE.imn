@@ -1,0 +1,150 @@
+node n1 {
+    type router
+    model host
+    network-config {
+	hostname s1
+	!
+	interface eth0
+	 ip address 10.0.0.10/24
+	 ipv6 address 2001::10/64
+	 mac address 00:00:00:aa:00:00
+	!
+    }
+    canvas c1
+    iconcoords {75.0 126.0}
+    labelcoords {75.0 158.0}
+    services {DefaultRoute SSH}
+    interface-peer {eth0 n2}
+}
+
+node n2 {
+    type router
+    model router
+    network-config {
+	hostname r2
+	!
+	interface eth1
+	 ip address 10.0.1.1/24
+	 ipv6 address 2001:1::1/64
+	 mac address 00:00:00:aa:00:02
+	!
+	interface eth0
+	 ip address 10.0.0.1/24
+	 ipv6 address 2001::1/64
+	 mac address 00:00:00:aa:00:01
+	!
+    }
+    canvas c1
+    iconcoords {559.0 84.0}
+    labelcoords {559.0 116.0}
+    services {zebra OSPFv2 OSPFv3 IPForward}
+    interface-peer {eth0 n1}
+    interface-peer {eth1 n3}
+}
+
+node n3 {
+    type router
+    model router
+    network-config {
+	hostname r3
+	!
+	interface eth0
+	 ip address 10.0.1.2/24
+	 ipv6 address 2001:1::2/64
+	 mac address 00:00:00:aa:00:03
+	!
+	interface eth1
+	 ip address 10.0.2.1/24
+	 ipv6 address 2001:2::1/64
+	 mac address 00:00:00:aa:00:04
+	!
+    }
+    canvas c1
+    iconcoords {803.0 318.0}
+    labelcoords {803.0 350.0}
+    services {zebra OSPFv2 OSPFv3 IPForward}
+    interface-peer {eth1 n4}
+    interface-peer {eth0 n2}
+}
+
+node n4 {
+    type router
+    model router
+    network-config {
+	hostname r4
+	!
+	interface eth1
+	 ip address 10.0.3.1/24
+	 ipv6 address 2001:3::1/64
+	 mac address 00:00:00:aa:00:06
+	!
+	interface eth0
+	 ip address 10.0.2.2/24
+	 ipv6 address 2001:2::2/64
+	 mac address 00:00:00:aa:00:05
+	!
+    }
+    canvas c1
+    iconcoords {597.0 547.0}
+    labelcoords {597.0 579.0}
+    services {zebra OSPFv2 OSPFv3 IPForward}
+    interface-peer {eth0 n3}
+    interface-peer {eth1 n5}
+}
+
+node n5 {
+    type router
+    model PC
+    network-config {
+	hostname n5
+	!
+	interface eth0
+	 ip address 10.0.3.20/24
+	 ipv6 address 2001:3::20/64
+	 mac address 00:00:00:aa:00:07
+	!
+    }
+    canvas c1
+    iconcoords {136.0 587.0}
+    labelcoords {136.0 619.0}
+    services {DefaultRoute}
+    interface-peer {eth0 n4}
+}
+
+link l1 {
+    nodes {n3 n4}
+}
+
+link l2 {
+    nodes {n1 n2}
+}
+
+link l3 {
+    nodes {n4 n5}
+}
+
+link l4 {
+    nodes {n2 n3}
+    bandwidth 0
+}
+
+canvas c1 {
+    name {Canvas1}
+}
+
+option global {
+    interface_names no
+    ip_addresses yes
+    ipv6_addresses no
+    node_labels yes
+    link_labels yes
+    show_api no
+    background_images no
+    annotations yes
+    grid yes
+    traffic_start 0
+}
+
+option session {
+}
+

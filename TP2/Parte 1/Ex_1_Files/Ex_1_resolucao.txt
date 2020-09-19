@@ -1,0 +1,26 @@
+
+
+CORE START:
+
+sudo /etc/init.d/core-daemon start
+sudo core-gui
+
+1.
+
+a)
+
+b) Numa fase inicial o pacote enviado pelo servidor s1 não tinha o TTL necessário para atingir o destino final (pc h5) portanto foi testando várias querys aumentando esse valor até obter resposta de sucesso por parte do destino. Isso efetivamente acontece quando TTL = 4 o que é esperado face à topologia de rede.
+
+c) TTL = 4. Sim está correta pois conseguimos oter uma resposta de sucesso (ou seja, o Time to Live não foi exceeded) no registo 42 do Wireshark e alcançamos assim o destino com este TTL.
+
+d)
+
+xº envio: tempo entre envio e resposta
+
+1º envio: 0.000023041 s
+2º envio: 0.000008319 s
+3º envio: 0.000008240 s
+4º envio: 0.000007883 s 
+5º envio: 0.000007686 s
+
+média: 0.000011 s

@@ -1,0 +1,243 @@
+
+----------------------------------------------------------------------------
+
+TODO: 
+
+(1)
+
+	c) correr comandos (parte prática prova)
+
+		"traceroute -I 10.0.3.20 -m 4"
+		"traceroute -I 10.0.3.20 -m 3"
+
+	d) correr novamente "sudo traceroute -I 10.0.3.20" e tirar print aos tempos
+
+(2)
+
+----------------------------------------------------------------------------
+
+Exercício 1:
+
+No primeiro exercício era pedido para criar uma topologia de rede no software emulador CORE para registar tráfego enviado pelo comando "traceroute" [incluir breve explicação do traceroute - NOTA 1].
+
+A topologia de rede estabelecida foi a seguinte:
+
+	[apresentar: "Topologia de Rede CORE.png"]
+
+a)..........................................................................
+
+Como fase inicial era necessário ligar o Wireshark no host s1 gerado pelo seguinte comando:
+
+[latex bash font]
+
+traceroute -I 10.0.3.20
+
+onde 10.0.3.20 representa o IPv4 do pc h5 (endereço destino do pacote).
+
+De seguida, na alínea b) será apresentado o registo de tráfego obtido no Wireshark.
+
+b)..........................................................................
+
+	O tráfego ICMP obtido no Wireshark foi o seguinte:
+
+	[apresentar: "TráfegoICMPWireshark.png"]
+
+	De realçar que, para obter apenas este tráfego foi necessário aplicar o filtro "icmp" na aba acima de cor verde.
+
+	Partindo então desta captura concluímos o seguinte:
+
+	O programa traceroute enviou 10 pacotes "echo (ping) request", sendo o registo 41 o último a partir do qual, no seguinte, registo 42, obteve resposta por parte do destino. 
+
+	Partindo do príncipio que o comando traceroute envia pacotes aumentando gradualmente o TTL, visto que temos mensagens "ICMP TTL exceeded messages", temos que só a partir da décima mensagem, com TTL = 4, obtivemos resposta, o que significa que só fazendo 4 hops (saltos) se chega ao destino e assim, comparando com a topologia de rede, os resultados são o que esperávamos visto que temos 3 routers e um host até chegar ao fim.
+
+	O tráfego ICMP recebido como resposta sob a forma "echo (ping) reply" a partir do registo 42 serve como confirmação de como o número de hops é suficiente. 
+
+	As mensagens seguintes repetidas são utilizadas pelo traceroute por questões de cálculo estatístico de "Round-Trip Time".
+
+c)..........................................................................
+
+	Pelas razões apresentadas acima, o valor de TTL para alcançar o destino h5 deve ser de 4.
+
+	Na prática bastaria estabelecer um número de TTL máximo para 4 para verificar que obeteríamos uma resposta positiva, por exemplo:
+
+	#Número máximo de hops = 4 (teremos pelo menos um reply):
+
+		traceroute -I 10.0.3.20 -m 4 
+
+		[mostrar reply com imagem - TODO]
+
+	#Número máximo de hops = 3 (não teríamos reply):
+
+		traceroute -I 10.0.3.20 -m 3 
+
+		[mostrar mensagens de erro com imagem - TODO]
+
+	e, deste último, obteríamos apenas mensagens de "ICMP TTL exceeded messages"
+
+d)..........................................................................
+
+	O "Round-Trip Time", como o próprio enunciado o diz, traduz-se no tempo médio de ida-e-volta do pacote, ou seja, a média da diferença de tempo entre um pedido ("echo (ping) request") e uma resposta ("echo (ping) reply"). 
+
+	Assim, com a ajuda do Wireshark conseguimos aceder à diferença entre o momento de request e o reply obtido usando a opção "Se/Unset time reference" como se pode verificar no exemplo seguinte:
+
+	[apresentar: "RTT_Wireshark.png"]
+
+	Obtivemos assim os seguintes tempos:
+
+	X: Tempo entre REQUEST e REPLY (registo X)
+
+	1: 0.000023041 s
+	2: 0.000008319 s
+	3: 0.000008240 s
+	4: 0.000007883 s 
+	5: 0.000007686 s
+
+O tempo obtido foi de, em média, 0.000011 segundos ("Round-Trip Time"). 
+
+----------------------------------------------------------------------------
+
+Exercício 2:
+
+	Este exercício pretendia que se registasse tráfego IP na nossa máquina nativa gerando datagramas de diferentes tamanhos.
+
+	O primeiro passo foi capturar, usando o Wireshark, o tráfego gerado pelo traceroute para diferentes tamanhos de pacote:
+
+	(i) Sem especificar (tamanho por defeito):
+
+		"traceroute -I marco.uminho.pt" 
+
+	(ii) 42XX bytes -> Grupo 09, então 4209 bytes:
+
+		"traceroute -I marco.uminho.pt" 4209
+
+	Os outputs dos comandos inseridos foram os seguintes:
+
+	[apresentar output: "(i)ComandoOutput_Default.png"]
+
+	[apresentar output: "(ii)ComandoOutput_4209.png"]
+
+	De seguida parámos a captura e concentrámos a análise no tráfego ICMP gerado por estes comandos, tráfego esse registado pelo Wireshark.
+
+	Após filtrar os pacotes de modo a apresentar apenas os que tinham protocolo ICMP conseguimos identificar os diferentes "echo (ping) request" e "echo (ping) reply" dividindo os registo em 2 grupos.
+
+	O intervalo de registos 6 <-> 45 é referente ao primeiro comando (i) pois todas as mensagens possuem um tamanho igual de 74 bytes, como se pode ver na seguinte figura:
+
+	[aprensentar: "Captura_Registos_6_45_Default.png"]
+
+	Os restantes são referentes ao tráfego do comando (ii), com pacotes de tamanho superior que se encontram fragmentados, assunto falado de seguida.
+
+	Nota: A diferença de tamanho referida pode ser vista do registo 69 para a frente.
+
+	Partindo da primeira mensagem ICMP capturada (para o comando (i), ou seja, com o tamanho estabelecido por defeito), obteve-se o seguinte pacote:
+
+	[apresentar: "PrimeiroPacotePrint.png"]
+
+
+a)..........................................................................
+
+O endereço IP da interface ativa do nosso computador é o Source: 192.168.2.151 que representa de onde o pacote foi enviado.
+
+b)..........................................................................
+
+O campo protocolo indica que tipo de dados podem ser encontrados no porção payload do datagrama IP.
+
+Neste caso o protocolo usado foi o ICMP (Internet Control Message Protocol).
+
+c)..........................................................................
+
+O cabeçalho IP (header) tem 20 bytes como indicado no datagrama da figura acima. 
+
+Os dados (payload) representam 32 bytes do frame (Data (32 bytes) na expansão da parte do ICMP da imagem).
+
+O cálculo do payload é relativamente simples: 
+
+O frame capturado pelo Wireshark apresenta um tamanho de 74 bytes que corresponde à soma de 60 bytes de pacote (definido pelo traceroute por defeito) e 14 bytes de especificação ethernet (MAC Header).
+
+Logo, 74 bytes = 14 bytes (ethernet spec.) + 60 bytes (pacote IP)
+
+O payload pode ser obtido a partir do pacote IP, sendo que, neste pacote de 60 bytes correspondem a: 20 bytes para o header IP, 8 bytes para o header ICMP e o resto serão os dados (payload). 
+
+Assim, payload = 60 - 20 - 8 = 32 bytes.
+
+d)..........................................................................
+
+Não foi fragmentado. Este facto pode ser provado por diversas razões:
+
+1) A quantidade de dados enviados por cada pacote é menor que o MTU (Maximum Transmission Unit = 1500 bytes (payload)), sendo apenas 60 bytes;
+
+2) Todas as flags do datagrama original estão a zero ("Flags: 0x0000") o que indica que a o campo "More fragments" também está a zero o que indica que este frame é o último (neste caso o único).
+
+Este facto pode ser comprovado com o seguinte print:
+
+	[apresentar: "Pacote6_Flags.png"]
+
+e)..........................................................................
+
+Para ordenar os pacotes de acordo com o endereço fonte pressionámos o cabeçalho da coluna Source e obtivemos a seguinte ordem de pacotes:
+
+	[apresentar: "(e)_Ordem source IP.png"]
+
+Analisando apenas as mensagens enviadas pela interface do nosso computador, ou seja, com o IPv4: 192.168.2.151, temos as seguintes variações no header IP:
+
+1) O campo TTL varia, consequência de aumentar em 1 o seu valor em cada mensagem enviada pelo traceroute;
+
+2) O campo Identification também varia, pois este serve para indicar a sua identificação para outros fragmentos deste pacote na rede, o que não se verifica.
+
+3) Header Checksum. Também varia de mensagem para mensagem e é usada pelo router para verificar erros no pacote.
+
+f)..........................................................................
+
+O valor do campo identificação vai aumentando em um (em hexadecimal) a cada mensagem nova. O valor do campo TTL aumenta de um em um a cada 3 mensagens.
+
+g)..........................................................................
+
+Para ordenar os pacotes de acordo com o endereço destino pressionámos o cabeçalho da coluna Destination e obtivemos a seguinte ordem de pacotes:
+
+	[apresentar: "(e)_Ordem dest IP.png"]
+
+Analisando apenas as mensagens enviadas à interface do nosso computador, ou seja, à interface 192.168.2.151, temos:
+
+O valor do campo TTL é de 64 nas primeiras 3 mensagens de erro do Source: 192.168.2.1 e passa para TTL = 254 nas mensagens do Source: 193.136.19.254.
+
+Como visto atrás este valor não permanece constante para as mensagens "ICMP TTL exceeded" enviadas ao nosso host.
+
+A razão para isto acontecer poderá ser devido a
+
+############################################################################
+
+Nota 1:
+
+Comando "traceroute": 
+
+	* É um comando que permite mostrar o caminho que um pacote toma desde o host origem até um host especificado.
+
+	* É muitas vezes usado para troubleshoot sendo que podemos verificar se um pacote chegará a um dado destino sem ter de o enviar.
+
+	* O comando utiliza o raciocíno que se segue:
+
+		Cada pacote tem um TTL estabelecido no pacote IP enviado que é decrementado por um à medida que o pacote salta de router para router.
+
+		Se um router recebe um pacote com TTL = 1 então descarta o pacote e informa o host original que o valor de TTL foi excedido e, portanto, o pacote não chegou ao seu destino (Enviando aquilo que se chama de "ICMP TTL exceeded messages").
+
+		O "traceroute" faz uso destas mensagens ICMP para encontrar os routers que são intermediários no caminho para o host destino e assim vai descobrindo os seus endereços IP.
+
+		Incrementando o valor do TTL permitirá chegar, deste modo, a outros routers intermediários.  
+
+############################################################################
+
+Nota 2:
+
+Porque se envia 3 pacotes com TTL igual de cada vez?
+
+	* Para calcular uma média de "Round-Trip Time" que se traduz no tempo de enviar um "request" e receber um "reply" em milisegundos.
+
+############################################################################
+
+Nota 3:
+
+Iniciar o CORE:
+
+	sudo /etc/init.d/core-daemon start
+	sudo core-gui
+
+############################################################################
