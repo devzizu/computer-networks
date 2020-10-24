@@ -7,10 +7,18 @@
     - [TP3](https://github.com/devzizu/Computer-Networks/blob/master/TP3) 
 - #### TP4 - Wireless Networks
     - [TP4](https://github.com/devzizu/Computer-Networks/blob/master/TP4) 
-#### Members / Mainteiners 
 
-- João Azevedo    | [A85227]
-- Pedro Machado | [A83719]
-- Paulo Araujo | [A85729]
+<br>
+
+### Members / Maintainers
+
+
+|      Name     | Number |
+|---------------|--------|
+| [João Azevedo](https://github.com/devzizu)   | A85227 |
+| [Pedro Machado](https://github.com/PedroFCM) | A83719 |
+| [Paulo Araújo](https://github.com/paulob122) | A85729 |
+
+<br>
 
 >**University of Minho, Software Engineering (3rd year)**.
